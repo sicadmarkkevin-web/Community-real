@@ -1,0 +1,169 @@
+:root {
+  --bg: #eef6f1;
+  --panel-bg: rgba(255, 255, 255, 0.92);
+  --accent: #2f9e6e;
+  --accent-dark: #1f7a53;
+  --text-dark: #1e2b25;
+  --text-muted: #5a6b62;
+  --shadow: 0 6px 20px rgba(20, 40, 30, 0.18);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text-dark);
+}
+
+.map-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  filter: saturate(1.08) contrast(1.02);
+}
+
+/* Top-left info / header panel */
+.location-panel {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1000;
+  max-width: 280px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  border: 2px solid var(--accent);
+}
+
+.location-panel-header {
+  margin-bottom: 6px;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  line-height: 1.1;
+}
+
+.app-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.location-panel-body {
+  font-size: 13px;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+.location-panel-status {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: #a14a1c;
+  background: #fff3e6;
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid #f0c090;
+}
+
+/* Bottom-right style map controls */
+.map-controls {
+  position: absolute;
+  bottom: 22px;
+  right: 14px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-control-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.12s ease, background 0.12s ease;
+  white-space: nowrap;
+}
+
+.map-control-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.map-control-btn:active {
+  transform: translateY(0);
+}
+
+/* Custom emoji marker bubble */
+.custom-object-marker {
+  background: transparent;
+  border: none;
+}
+
+.marker-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  box-shadow: 0 3px 10px rgba(20, 40, 30, 0.3);
+}
+
+.object-popup-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--accent-dark);
+  margin-bottom: 4px;
+}
+
+.object-popup-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .location-panel {
+    max-width: calc(100vw - 28px);
+    padding: 10px 12px;
+  }
+
+  .app-title {
+    font-size: 16px;
+  }
+
+  .map-control-btn {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+}
