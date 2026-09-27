@@ -62,16 +62,27 @@ Output goes to `dist/`. Preview it locally with `npm run preview`.
 
 ## What was built
 
-- Full-screen interactive Leaflet + OpenStreetMap map (CARTO Voyager tiles
-  for a cleaner, friendlier look — original styling, not Google Maps).
-- Centered on Poblacion, Makati by default, via one config file.
-- 5 custom sample markers (house, store, water station, park, food) with
-  click-to-open info popups.
+- Full-screen interactive Leaflet + OpenStreetMap map, centered on
+  Poblacion, Makati by default via one config file.
+- Real OSM building footprints rendered as clickable polygons — tap any
+  building to attach a sample business to it (name + category), or tap an
+  occupied building to view/remove what's there. Businesses you add live
+  only in memory for this session (no backend yet).
+- 5 pre-set custom sample markers (house, store, water station, park, food)
+  with click-to-open info popups.
 - Top-left "Neighborhood World" header + info panel.
 - 📍 My Location button (uses browser Geolocation API, one-shot, no
   continuous tracking).
 - 🏠 Poblacion button to recenter the map.
 - Responsive layout for desktop and mobile.
+
+## Building data
+
+Building footprints are fetched live from the free [Overpass
+API](https://overpass-api.de) (OpenStreetMap's data API) for the area
+around the configured location — no API key needed. This happens in
+`src/components/BuildingLayer.tsx`. If Overpass is briefly unavailable,
+the buildings just won't render; the map and existing markers still work.
 
 ## Limitations (Phase 1 only)
 
