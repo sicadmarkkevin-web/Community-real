@@ -20,13 +20,14 @@ export default function NeighborhoodMap() {
         className="leaflet-map"
         zoomControl={false}
       >
-        {/* Original visual treatment: a clean, muted-color tile set
-            (CARTO Voyager) instead of default OSM styling, to move
-            toward a friendlier, more game-like look while keeping
-            real geography intact. */}
+        {/* Standard OpenStreetMap tiles — free, no API key required.
+            A CSS filter (see .leaflet-map / .map-tiles-friendly in
+            index.css) is used to nudge the look toward the friendlier,
+            more game-like direction without needing a keyed tile
+            service, while keeping the real geography intact. */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
         {sampleObjects.map((obj) => (
