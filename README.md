@@ -81,8 +81,17 @@ Output goes to `dist/`. Preview it locally with `npm run preview`.
 Building footprints are fetched live from the free [Overpass
 API](https://overpass-api.de) (OpenStreetMap's data API) for the area
 around the configured location — no API key needed. This happens in
-`src/components/BuildingLayer.tsx`. If Overpass is briefly unavailable,
-the buildings just won't render; the map and existing markers still work.
+`src/components/BuildingLayer.tsx`.
+
+Overpass is a shared public service, so it can occasionally rate-limit or
+briefly fail for a given mirror/origin (this can show up in the browser
+console as a CORS error even when the real cause is a busy server). The
+app tries three public mirrors in turn, then a CORS-proxy fallback, before
+giving up — if all of that fails, buildings just won't render that
+session, but the map, sample markers, and location buttons keep working.
+The panel in the top-left shows "Loading buildings…", a building count, or
+a friendly "unavailable right now" message so it's obvious what's
+happening.
 
 ## Limitations (Phase 1 only)
 

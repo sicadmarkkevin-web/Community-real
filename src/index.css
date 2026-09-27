@@ -299,3 +299,28 @@ html, body, #root {
   line-height: 1.4;
   margin-top: 4px;
 }
+
+/* Building load status line in the location panel */
+.building-status {
+  margin-top: 8px;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.building-status.loading {
+  color: var(--text-muted);
+  background: #f1f5f2;
+}
+
+.building-status.loaded {
+  color: var(--accent-dark);
+  background: #e2f5ec;
+  font-weight: 600;
+}
+
+.building-status.error {
+  color: #a14a1c;
+  background: #fff3e6;
+  border: 1px solid #f0c090;
+}

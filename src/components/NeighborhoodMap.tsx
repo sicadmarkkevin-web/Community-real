@@ -14,6 +14,10 @@ import ViewBusinessPanel from "./ViewBusinessPanel";
 
 export default function NeighborhoodMap() {
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [buildingStatus, setBuildingStatus] = useState<
+    "loading" | "loaded" | "error"
+  >("loading");
+  const [buildingCount, setBuildingCount] = useState(0);
   const [selectedBuilding, setSelectedBuilding] = useState<OsmBuilding | null>(
     null
   );
@@ -56,7 +60,11 @@ export default function NeighborhoodMap() {
 
   return (
     <div className="map-shell">
-      <LocationPanel statusMessage={statusMessage} />
+      <LocationPanel
+        statusMessage={statusMessage}
+        buildingStatus={buildingStatus}
+        buildingCount={buildingCount}
+      />
 
       <MapContainer
         center={[LOCATION_CONFIG.latitude, LOCATION_CONFIG.longitude]}
@@ -77,6 +85,10 @@ export default function NeighborhoodMap() {
         <BuildingLayer
           onBuildingClick={handleBuildingClick}
           occupiedBuildingIds={occupiedBuildingIds}
+          onStatusChange={(status, count) => {
+            setBuildingStatus(status);
+            setBuildingCount(count);
+          }}
         />
 
         {sampleObjects.map((obj) => (
